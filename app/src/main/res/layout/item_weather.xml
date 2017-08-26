@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+    <ImageView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_vertical"
+        android:id="@+id/imgWeather"
+        android:layout_marginRight="16dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_toRightOf="@id/imgWeather">
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Date"
+            android:layout_marginBottom="4dp"
+            android:fontFamily="sans-serif-condensed"/>
+        <TextView
+            android:id="@+id/tvWeatherName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Weather Name"
+            android:fontFamily="sans-serif-condensed"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Day"
+            android:id="@+id/tvTempMinMax"
+            android:fontFamily="sans-serif-condensed"/>
+    </LinearLayout>
+</RelativeLayout>
