@@ -5,9 +5,9 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
-import com.nbs.mykotlinlearning.WeatherApplication
 import com.nbs.mykotlinlearning.http.retrofit.view.ForecastAdapter
 import com.nbs.weatherforecast.R
+import com.nbs.weatherforecast.base.WeatherApplication
 import com.nbs.weatherforecast.data.mapper.Weather
 import com.nbs.weatherforecast.view.main.contract.MainView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -34,14 +34,14 @@ class MainActivity : AppCompatActivity(), MainView {
         adapter = ForecastAdapter(this, ArrayList())
         rvWeatherResult.adapter = adapter
 
-        presenter = MainPresenter(this)
-        presenter?.onAttachView()
+        presenter = MainPresenter()
+        presenter?.onAttach(this)
         presenter?.loadForecast()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        presenter?.onDetachView()
+        presenter?.onDetach()
     }
 
     override fun showLoading() {

@@ -32,7 +32,7 @@ class ObjectMapper{
     }
 
     fun getCelcius(kelvin: Float): Float{
-        return kelvin - 273;
+        return kelvin - 273
     }
 
     fun convertDate(dt: Long): String{

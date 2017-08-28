@@ -2,7 +2,7 @@ package com.nbs.weatherforecast.di
 
 import android.app.Application
 import android.content.Context
-import com.nbs.mykotlinlearning.WeatherApplication
+import com.nbs.weatherforecast.base.WeatherApplication
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

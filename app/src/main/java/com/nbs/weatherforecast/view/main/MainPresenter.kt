@@ -1,6 +1,6 @@
 package com.nbs.weatherforecast.view.main
 
-import com.nbs.mykotlinlearning.WeatherApplication
+import com.nbs.weatherforecast.base.WeatherApplication
 import com.nbs.weatherforecast.data.api.ApiManager
 import com.nbs.weatherforecast.view.main.contract.IMainPresenter
 import com.nbs.weatherforecast.view.main.contract.MainView
@@ -12,32 +12,35 @@ import javax.inject.Inject
 /**
  * Created by sidiqpermana on 8/26/17.
  */
-class MainPresenter(view: MainView) : IMainPresenter {
+class MainPresenter: IMainPresenter {
     protected var subscriptions = CompositeSubscription()
 
     @Inject lateinit var apiManager: ApiManager
-    var view: MainView?= view
+    private var mainView: MainView? = null
 
-    override fun onAttachView() {
+
+    override fun onAttach(view: MainView) {
         subscriptions = CompositeSubscription()
         WeatherApplication.appComponent.inject(this)
+        this.mainView = view
     }
 
-    override fun onDetachView() {
+    override fun onDetach() {
         subscriptions.clear()
+        mainView = null
     }
 
     override fun loadForecast() {
-        view?.showLoading()
+        mainView?.showLoading()
         val subscription = apiManager.getWeeklyForecast("Jakarta")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe( {
-                    t -> view?.showForecast(t?.weathers)
-                    view?.hideLoading()
+                    t -> mainView?.showForecast(t?.weathers)
+                    mainView?.hideLoading()
                 }, {
-                    t: Throwable? -> view?.showError(t?.message.toString())
-                    view?.hideLoading()
+                    t: Throwable? -> mainView?.showError(t?.message.toString())
+                    mainView?.hideLoading()
                 })
         subscriptions.add(subscription)
     }
