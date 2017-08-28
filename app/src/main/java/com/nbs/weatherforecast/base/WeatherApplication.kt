@@ -1,4 +1,4 @@
-package com.nbs.mykotlinlearning
+package com.nbs.weatherforecast.base
 
 import android.app.Application
 import com.nbs.weatherforecast.di.AppComponent
